@@ -122,7 +122,7 @@ body {
 
 .Message {
     font-family: Arial, Helvetica, sans-serif;
-    font-size: var(--cell-size);
+    font-size: calc(var(--cell-size) * 0.5);
     color: var(--jgu-red);
 }
 
