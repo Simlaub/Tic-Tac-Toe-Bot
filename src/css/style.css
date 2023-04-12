@@ -1,27 +1,134 @@
-html {
-    position: absolute;
-    top: 0;
-    left: 0;
-
-    width: 100%;
-    height: 100%;
+*, *::after, *::before {
+    box-sizing: border-box;
 }
 
-.GameGrid {
+:root {
+    --cell-size: 100px;
+    --mark-size: calc(var(--cell-size) * 0.9);
+    --jgu-red: rgb(193, 0, 42);
+}
+
+body {
+    margin: 0;
+}
+
+.Board {
     position: absolute;
-    left: 33vw;
-    width: 33vw;
-    height: 33vw;
+    width: 100vw;
+    height: 100vh;
 
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 3px;
+    place-content: center;
+    place-items: center;
+    grid-template-columns: repeat(3, auto);
 }
 
-.GridSlot {
-    border: solid black;
+.Cell {
+    display: flex;
+
+    width: var(--cell-size);
+    height: var(--cell-size);
+
+    justify-content: center;
+    align-items: center;
+
+    border: 1px solid black;
 }
 
-.GridSlot:hover {
-    border: solid red;
+.Cell:nth-child(1),
+.Cell:nth-child(2),
+.Cell:nth-child(3) {
+    border-top: none;
+}
+
+.Cell:nth-child(3n + 1) {
+    border-left: none;
+}
+
+.Cell:nth-child(3n + 3) {
+    border-right: none;
+}
+
+.Cell:nth-child(7),
+.Cell:nth-child(8),
+.Cell:nth-child(9) {
+    border-bottom: none;
+}
+
+.Cell.X::before,
+.Cell.X::after,
+.Cell.O::before{
+    background-color: black;
+}
+
+.Cell:not(.X):not(.O):hover::before,
+.Cell:not(.X):not(.O):hover::after {
+    background-color: lightgray;
+}
+
+.Cell.X::before,
+.Cell.X::after,
+.Board.X .Cell:not(.X):not(.O):hover::before,
+.Board.X .Cell:not(.X):not(.O):hover::after {
+    position: absolute;
+    content: "";
+    width: calc(var(--mark-size) * 0.15);
+    height: var(--mark-size);
+}
+
+.Cell.X::before,
+.Board.X .Cell:not(.X):not(.O):hover::before {
+    transform: rotate(45deg);
+}
+
+.Cell.X::after,
+.Board.X .Cell:not(.X):not(.O):hover::after {
+    transform: rotate(-45deg);
+}
+
+.Cell.O::before,
+.Board.O .Cell:not(.X):not(.O):hover::before {
+    position: absolute;
+    content: "";
+    width: var(--mark-size);
+    height: var(--mark-size);
+
+    border-radius: 50%;
+}
+
+.Cell.O::after,
+.Board.O .Cell:not(.X):not(.O):hover::after {
+    position: absolute;
+    content: "";
+    width: calc(var(--mark-size) * 0.75);
+    height: calc(var(--mark-size) * 0.75);
+
+    border-radius: 50%;
+
+    background-color: white;
+}
+
+.MessageBoard {
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.5);
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.Message {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: var(--cell-size);
+    color: var(--jgu-red);
+}
+
+.RestartButton {
+    width: var(--mark-size);
+    height: calc(var(--mark-size) * 0.5);
+
+    border-radius: 0.5;
 }
