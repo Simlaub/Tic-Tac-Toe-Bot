@@ -306,6 +306,7 @@ function isCellFilled(index) {
 
 function fillCell(index, player) {
     cells[index].classList.add(player);
+    cells[index].removeEventListener("click", onGridCellClick);
 }
 
 function sleep(ms) {
