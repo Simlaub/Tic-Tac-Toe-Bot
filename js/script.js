@@ -30,7 +30,12 @@ const botHardCodeConditions = [
     { board:"____OXX__", badPositions: [3]},
 
     { board:"__X_O_X__", badPositions: [0, 8]},
-    { board:"X___O___X", badPositions: [2, 6]}
+    { board:"X___O___X", badPositions: [2, 6]},
+
+    { board:"__O_X_X__", badPositions: [1, 3, 5, 7]},
+    { board:"__X_X_O__", badPositions: [1, 3, 5, 7]},
+    { board:"X___X___O", badPositions: [1, 3, 5, 7]},
+    { board:"O___X___X", badPositions: [1, 3, 5, 7]},
 ]
 
 const botPlayer = "O";
@@ -392,6 +397,8 @@ async function botMove() {
         }
 
     }
+
+    console.log(freeCells)
 
     fillCell(freeCells[Math.floor(Math.random() * (freeCells.length - 1))], botPlayer);
     console.log("Made Random Choice")
