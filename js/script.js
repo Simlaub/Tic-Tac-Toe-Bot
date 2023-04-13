@@ -113,6 +113,14 @@ async function onGridCellClick(e) {
 
 }
 
+function removeEventListeners() {
+    for (let i = 0; i < cells.length; i++)
+            {
+                // Remove Event Listeners from each cell
+                cells[i].removeEventListener("click", onGridCellClick);
+            }
+}
+
 function changePlayer() {
     board.classList.remove(currentPlayer);
 
@@ -241,6 +249,15 @@ function getWinningMoves() {
 function showMessage(msg) {
     message.innerHTML = msg;
     restartButton.style.display = "inline"
+
+    for (let i = 0; i < cells.length; i++)
+    {
+        // Remove Event Listeners from each cell
+        cells[i].removeEventListener("click", onGridCellClick);
+    }
+
+    board.classList.remove("X");
+    board.classList.remove("O");
 }
 
 function hideMessage() {
