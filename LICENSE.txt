@@ -1,5 +1,7 @@
 Tic-Tac-Toe-Bot 2023 by Simon Laubersheimer is licensed under CC BY 4.0
 
+Source can be found at 'https://github.com/Simlaub/Tic-Tac-Toe-Bot'
+
 Attribution 4.0 International
 
 =======================================================================
